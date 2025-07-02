@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "packageManager": "pnpm@10.12.4",
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-only",
   "private": true,
   "scripts": {
     "build": "vite build",
@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@tb-dev/utils": "^7.0.5",
-    "@tb-dev/vue": "^2.0.9",
-    "@tb-dev/vue-components": "^2.2.3",
-    "@vueuse/core": "^13.4.0",
+    "@tb-dev/vue": "^2.0.10",
+    "@tb-dev/vue-components": "^2.2.4",
+    "@vueuse/core": "^13.5.0",
     "core": "workspace:*",
     "lucide-vue-next": "^0.525.0",
     "vue": "^3.5.17"
