@@ -25,16 +25,26 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
 
   let min_level = f64::from(config.min_level);
   let max_level = f64::from(config.max_level);
+
   let min_cost = f64::from(config.min_cost);
   let max_cost = f64::from(config.max_cost);
+  let cost_growth = growth(min_cost, max_cost, min_level, max_level);
+
   let min_workforce = f64::from(config.min_workforce);
   let max_workforce = f64::from(config.max_workforce);
+  let workforce_growth = growth(min_workforce, max_workforce, min_level, max_level);
+
   let min_production = f64::from(config.min_production);
   let max_production = f64::from(config.max_production);
+  let production_growth = growth(min_production, max_production, min_level, max_level);
+
   let min_capacity = f64::from(config.min_capacity);
   let max_capacity = f64::from(config.max_capacity);
+  let capacity_growth = growth(min_capacity, max_capacity, min_level, max_level);
+
   let min_custom = f64::from(config.min_custom);
   let max_custom = f64::from(config.max_custom);
+  let custom_growth = growth(min_custom, max_custom, min_level, max_level);
 
   let mut cost = f64::from(config.min_cost);
   let mut maintenance = cost * config.maintenance.clamp(0.0, 1.0);
@@ -61,13 +71,13 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
       custom: custom.ceil() as u32,
     });
 
-    cost = growth(min_cost, max_cost, min_level, max_level);
-    workforce = growth(min_workforce, max_workforce, min_level, max_level);
-    production = growth(min_production, max_production, min_level, max_level);
-    capacity = growth(min_capacity, max_capacity, min_level, max_level);
-    custom = growth(min_custom, max_custom, min_level, max_level);
+    cost = (cost * cost_growth).ceil();
+    workforce = (workforce * workforce_growth).ceil();
+    production = (production * production_growth).ceil();
+    capacity = (capacity * capacity_growth).ceil();
+    custom = (custom * custom_growth).ceil();
 
-    maintenance -= cost * (config.maintenance.clamp(0.0, 1.0));
+    maintenance = cost * (config.maintenance.clamp(0.0, 1.0));
   }
 
   stats.sort_by_key(|it| it.level);
