@@ -86,7 +86,7 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
 }
 
 fn growth(min_value: f64, max_value: f64, min_level: f64, max_level: f64) -> f64 {
-  ((max_value / min_value).powf(1.0 / (max_level / min_level))) - 1.0
+  ((max_value / min_value).powf(1.0 / (max_level - min_level))) - 1.0
 }
 
 #[wasm_bindgen]
