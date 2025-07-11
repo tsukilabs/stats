@@ -1,8 +1,8 @@
 {
   "name": "web",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "license": "AGPL-3.0-only",
   "private": true,
   "scripts": {
@@ -10,9 +10,9 @@
     "dev": "vite dev"
   },
   "dependencies": {
-    "@tb-dev/utils": "^7.0.5",
-    "@tb-dev/vue": "^2.0.10",
-    "@tb-dev/vue-components": "^2.2.4",
+    "@tb-dev/utils": "^7.0.6",
+    "@tb-dev/vue": "^2.0.12",
+    "@tb-dev/vue-components": "^4.1.0",
     "@vueuse/core": "^13.5.0",
     "core": "workspace:*",
     "lucide-vue-next": "^0.525.0",

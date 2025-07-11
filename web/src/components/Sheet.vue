@@ -23,67 +23,139 @@ const contentHeight = useHeight(contentEl);
 <template>
   <Sheet>
     <SheetTrigger as-child>
-      <Button size="sm">Options</Button>
+      <Button size="sm">Opções</Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Options</SheetTitle>
+        <SheetTitle>Opções</SheetTitle>
       </SheetHeader>
 
       <div ref="contentEl" class="size-full p-4">
         <ScrollArea :style="{ height: toPixel(contentHeight - 80) }">
           <div class="flex flex-col items-start gap-3 pr-4 pb-4 pl-2">
             <Label>
-              <span>Level</span>
-              <InputNumber v-model="config.maxLevel" :min="1" :max="30" :step="1" />
+              <span>Nível mínimo</span>
+              <InputNumber
+                v-model="config.minLevel"
+                :min="1"
+                :max="config.maxLevel - 1"
+                :step="1"
+              />
             </Label>
             <Label>
-              <span>Wood</span>
+              <span>Nível máximo</span>
+              <InputNumber
+                v-model="config.maxLevel"
+                :min="config.minLevel + 1"
+                :max="30"
+                :step="1"
+              />
+            </Label>
+            <Label>
+              <span>Madeira</span>
               <InputNumber v-model="config.wood" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Stone</span>
+              <span>Pedra</span>
               <InputNumber v-model="config.stone" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Iron</span>
+              <span>Ferro</span>
               <InputNumber v-model="config.iron" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Cost</span>
-              <InputNumber v-model="config.cost" :min="0" :max="1_000_000_000" :step="1_000" />
+              <span>Custo mínimo</span>
+              <InputNumber
+                v-model="config.minCost"
+                :min="0"
+                :max="config.maxCost - 1"
+                :step="1_000"
+              />
             </Label>
             <Label>
-              <span>Cost Growth</span>
-              <InputNumber v-model="config.costGrowth" :min="0" :max="1" :step="0.05" />
+              <span>Custo máximo</span>
+              <InputNumber
+                v-model="config.maxCost"
+                :min="config.minCost + 1"
+                :max="1_000_000_000"
+                :step="1_000"
+              />
             </Label>
             <Label>
-              <span>Maintenance</span>
+              <span>Manutenção</span>
               <InputNumber v-model="config.maintenance" :min="0" :max="1" :step="0.001" />
             </Label>
             <Label>
-              <span>Workforce</span>
-              <InputNumber v-model="config.workforce" :min="0" :max="10_000" :step="10" />
+              <span>Força de trabalho mínima</span>
+              <InputNumber
+                v-model="config.minWorkforce"
+                :min="0"
+                :max="config.maxWorkforce - 1"
+                :step="10"
+              />
             </Label>
             <Label>
-              <span>Workforce Growth</span>
-              <InputNumber v-model="config.workforceGrowth" :min="0" :max="1" :step="0.05" />
+              <span>Força de trabalho máxima</span>
+              <InputNumber
+                v-model="config.maxWorkforce"
+                :min="config.minWorkforce + 1"
+                :max="10_000"
+                :step="10"
+              />
             </Label>
             <Label>
-              <span>Production</span>
-              <InputNumber v-model="config.production" :min="0" :max="100_000" :step="100" />
+              <span>Produção mínima</span>
+              <InputNumber
+                v-model="config.minProduction"
+                :min="0"
+                :max="config.maxProduction - 1"
+                :step="100"
+              />
             </Label>
             <Label>
-              <span>Production Growth</span>
-              <InputNumber v-model="config.productionGrowth" :min="0" :max="1" :step="0.05" />
+              <span>Produção máxima</span>
+              <InputNumber
+                v-model="config.maxProduction"
+                :min="config.minProduction + 1"
+                :max="100_000"
+                :step="100"
+              />
             </Label>
             <Label>
-              <span>Capacity</span>
-              <InputNumber v-model="config.capacity" :min="0" :max="100_000_000" :step="10_000" />
+              <span>Capacidade mínima</span>
+              <InputNumber
+                v-model="config.minCapacity"
+                :min="0"
+                :max="config.maxCapacity - 1"
+                :step="10_000"
+              />
             </Label>
             <Label>
-              <span>Capacity Growth</span>
-              <InputNumber v-model="config.capacityGrowth" :min="0" :max="1" :step="0.05" />
+              <span>Capacidade máxima</span>
+              <InputNumber
+                v-model="config.maxCapacity"
+                :min="config.minCapacity + 1"
+                :max="100_000_000"
+                :step="10_000"
+              />
+            </Label>
+            <Label>
+              <span>Valor mínimo</span>
+              <InputNumber
+                v-model="config.minCustom"
+                :min="0"
+                :max="config.maxCustom - 1"
+                :step="1"
+              />
+            </Label>
+            <Label>
+              <span>Valor máximo</span>
+              <InputNumber
+                v-model="config.maxCustom"
+                :min="config.minCustom + 1"
+                :max="100_000_000"
+                :step="1"
+              />
             </Label>
           </div>
         </ScrollArea>

@@ -13,35 +13,39 @@ const wasmConfig = new WasmConfig();
 const stats = shallowRef<Stats[]>([]);
 
 const config = localRef<Config>('nil:config', {
+  minLevel: 1,
   maxLevel: 30,
+  minCost: 1_000,
+  maxCost: 100_000,
+  minWorkforce: 1,
+  maxWorkforce: 150,
+  minProduction: 30,
+  maxProduction: 2400,
+  minCapacity: 1_000,
+  maxCapacity: 400_000,
+  minCustom: 1,
+  maxCustom: 100_000,
   wood: 0.3,
   stone: 0.4,
   iron: 0.3,
   maintenance: 0.005,
-  cost: 100_000,
-  costGrowth: 0.2,
-  workforce: 150,
-  workforceGrowth: 0.2,
-  production: 3_600,
-  productionGrowth: 0.2,
-  capacity: 400_000,
-  capacityGrowth: 0.2,
 });
 
 watchEffect(() => {
+  wasmConfig.min_level = config.value.minLevel;
   wasmConfig.max_level = config.value.maxLevel;
+  wasmConfig.min_cost = config.value.minCost;
+  wasmConfig.max_cost = config.value.maxCost;
+  wasmConfig.min_workforce = config.value.minWorkforce;
+  wasmConfig.max_workforce = config.value.maxWorkforce;
+  wasmConfig.min_production = config.value.minProduction;
+  wasmConfig.max_production = config.value.maxProduction;
+  wasmConfig.min_capacity = config.value.minCapacity;
+  wasmConfig.max_capacity = config.value.maxCapacity;
   wasmConfig.wood = config.value.wood;
   wasmConfig.stone = config.value.stone;
   wasmConfig.iron = config.value.iron;
   wasmConfig.maintenance = config.value.maintenance;
-  wasmConfig.cost = config.value.cost;
-  wasmConfig.cost_growth = config.value.costGrowth;
-  wasmConfig.workforce = config.value.workforce;
-  wasmConfig.workforce_growth = config.value.workforceGrowth;
-  wasmConfig.production = config.value.production;
-  wasmConfig.production_growth = config.value.productionGrowth;
-  wasmConfig.capacity = config.value.capacity;
-  wasmConfig.capacity_growth = config.value.capacityGrowth;
 
   stats.value = calc(wasmConfig);
 });
@@ -55,7 +59,7 @@ useColorMode({
 <template>
   <div class="fixed inset-0 overflow-hidden select-none">
     <header class="flex h-[48px] items-center justify-between px-4">
-      <div class="text-lg font-semibold">Stats Calculator</div>
+      <div class="text-lg font-semibold">Calculadora de Stats</div>
       <Sheet v-model="config" />
     </header>
     <main ref="mainEl" class="h-[calc(100vh-48px)] w-full">
@@ -68,31 +72,34 @@ useColorMode({
         <template #header>
           <TableRow class="bg-background hover:bg-background">
             <TableHead v-if="config.maxLevel > 1" class="w-16">
-              <span>Level</span>
+              <span>Nível</span>
             </TableHead>
-            <TableHead v-if="config.cost && config.costGrowth && config.wood">
-              <span>Wood</span>
+            <TableHead v-if="config.minCost && config.maxCost && config.wood">
+              <span>Madeira</span>
             </TableHead>
-            <TableHead v-if="config.cost && config.costGrowth && config.stone">
-              <span>Stone</span>
+            <TableHead v-if="config.minCost && config.maxCost && config.stone">
+              <span>Pedra</span>
             </TableHead>
-            <TableHead v-if="config.cost && config.costGrowth && config.iron">
-              <span>Iron</span>
+            <TableHead v-if="config.minCost && config.maxCost && config.iron">
+              <span>Ferro</span>
             </TableHead>
-            <TableHead v-if="config.cost && config.costGrowth">
-              <span>Cost</span>
+            <TableHead v-if="config.minCost && config.maxCost">
+              <span>Custo</span>
             </TableHead>
-            <TableHead v-if="config.cost && config.maintenance">
-              <span>Maintenance</span>
+            <TableHead v-if="config.minCost && config.maxCost && config.maintenance">
+              <span>Manutenção</span>
             </TableHead>
-            <TableHead v-if="config.workforce && config.workforceGrowth">
-              <span>Workforce</span>
+            <TableHead v-if="config.minWorkforce && config.maxWorkforce">
+              <span>Força de trabalho</span>
             </TableHead>
-            <TableHead v-if="config.production && config.productionGrowth">
-              <span>Production</span>
+            <TableHead v-if="config.minProduction && config.maxProduction">
+              <span>Produção</span>
             </TableHead>
-            <TableHead v-if="config.capacity && config.capacityGrowth">
-              <span>Capacity</span>
+            <TableHead v-if="config.minCapacity && config.maxCapacity">
+              <span>Capacidade</span>
+            </TableHead>
+            <TableHead v-if="config.minCustom && config.maxCustom">
+              <span>Valor (personalizado)</span>
             </TableHead>
           </TableRow>
         </template>
@@ -101,29 +108,32 @@ useColorMode({
           <TableCell v-if="config.maxLevel > 1">
             {{ result.level }}
           </TableCell>
-          <TableCell v-if="config.cost && config.costGrowth && config.wood">
+          <TableCell v-if="config.minCost && config.maxCost && config.wood">
             {{ result.wood }}
           </TableCell>
-          <TableCell v-if="config.cost && config.costGrowth && config.stone">
+          <TableCell v-if="config.minCost && config.maxCost && config.stone">
             {{ result.stone }}
           </TableCell>
-          <TableCell v-if="config.cost && config.costGrowth && config.iron">
+          <TableCell v-if="config.minCost && config.maxCost && config.iron">
             {{ result.iron }}
           </TableCell>
-          <TableCell v-if="config.cost && config.costGrowth">
-            {{ result.total_cost }}
+          <TableCell v-if="config.minCost && config.maxCost">
+            {{ result.cost }}
           </TableCell>
-          <TableCell v-if="config.cost && config.maintenance">
+          <TableCell v-if="config.minCost && config.maxCost && config.maintenance">
             {{ result.maintenance }}
           </TableCell>
-          <TableCell v-if="config.workforce && config.workforceGrowth">
+          <TableCell v-if="config.minWorkforce && config.maxWorkforce">
             {{ result.workforce }}
           </TableCell>
-          <TableCell v-if="config.production && config.productionGrowth">
+          <TableCell v-if="config.minProduction && config.maxProduction">
             {{ result.production }}
           </TableCell>
-          <TableCell v-if="config.capacity && config.capacityGrowth">
+          <TableCell v-if="config.minCapacity && config.maxCapacity">
             {{ result.capacity }}
+          </TableCell>
+          <TableCell v-if="config.minCustom && config.maxCustom">
+            {{ result.custom }}
           </TableCell>
         </TableRow>
       </Table>

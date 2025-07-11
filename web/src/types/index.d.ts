@@ -1,15 +1,24 @@
 interface Config {
-  capacity: number;
-  capacityGrowth: number;
-  cost: number;
-  costGrowth: number;
+  minLevel: number;
+  maxLevel: number;
+
+  minCost: number;
+  maxCost: number;
+
+  minWorkforce: number;
+  maxWorkforce: number;
+
+  minProduction: number;
+  maxProduction: number;
+
+  minCapacity: number;
+  maxCapacity: number;
+
+  minCustom: number;
+  maxCustom: number;
+
+  wood: number;
+  stone: number;
   iron: number;
   maintenance: number;
-  maxLevel: number;
-  production: number;
-  productionGrowth: number;
-  stone: number;
-  wood: number;
-  workforce: number;
-  workforceGrowth: number;
 }

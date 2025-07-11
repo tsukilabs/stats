@@ -1,14 +1,25 @@
 [package]
 name = "core"
-version = "1.0.0"
+version = "2.0.0"
 publish = false
 
-edition.workspace = true
-rust-version.workspace = true
-license.workspace = true
-homepage.workspace = true
-repository.workspace = true
-authors.workspace = true
+[package.edition]
+workspace = true
+
+[package.rust-version]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.authors]
+workspace = true
 
 [lib]
 crate-type = ["cdylib", "rlib"]
