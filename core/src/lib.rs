@@ -71,11 +71,11 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
       custom: custom.ceil() as u32,
     });
 
-    cost += (cost * cost_growth).ceil();
-    workforce += (workforce * workforce_growth).ceil();
-    production += (production * production_growth).ceil();
-    capacity += (capacity * capacity_growth).ceil();
-    custom += (custom * custom_growth).ceil();
+    cost += cost * cost_growth;
+    workforce += workforce * workforce_growth;
+    production += production * production_growth;
+    capacity += capacity * capacity_growth;
+    custom += custom * custom_growth;
 
     maintenance = cost * (config.maintenance.clamp(0.0, 1.0));
   }
