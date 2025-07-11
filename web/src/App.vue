@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { useHeight } from '@tb-dev/vue';
 import Sheet from '@/components/Sheet.vue';
 import { useColorMode } from '@vueuse/core';
-import { localRef, useHeight } from '@tb-dev/vue';
 import { calc, Stats, Config as WasmConfig } from 'core';
-import { shallowRef, useTemplateRef, watchEffect } from 'vue';
+import { ref, shallowRef, useTemplateRef, watchEffect } from 'vue';
 import { Table, TableCell, TableHead, TableRow } from '@tb-dev/vue-components';
 
 const mainEl = useTemplateRef('mainEl');
@@ -12,7 +12,7 @@ const mainHeight = useHeight(mainEl);
 const wasmConfig = new WasmConfig();
 const stats = shallowRef<Stats[]>([]);
 
-const config = localRef<Config>('nil:config', {
+const config = ref<Config>({
   minLevel: 1,
   maxLevel: 30,
   minCost: 1_000,
