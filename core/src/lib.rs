@@ -47,28 +47,30 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
   let custom_growth = growth(min_custom, max_custom, min_level, max_level);
 
   let mut cost = f64::from(config.min_cost);
-  let mut maintenance = cost * config.maintenance.clamp(0.0, 1.0);
   let mut workforce = f64::from(config.min_workforce);
   let mut production = f64::from(config.min_production);
   let mut capacity = f64::from(config.min_capacity);
   let mut custom = f64::from(config.min_custom);
 
-  let wood = config.wood.clamp(0.0, 1.0);
-  let stone = config.stone.clamp(0.0, 1.0);
-  let iron = config.iron.clamp(0.0, 1.0);
+  let wood_ratio = config.wood.clamp(0.0, 1.0);
+  let stone_ratio = config.stone.clamp(0.0, 1.0);
+  let iron_ratio = config.iron.clamp(0.0, 1.0);
+
+  let maintenance_ratio = config.maintenance.clamp(0.0, 1.0);
+  let mut maintenance = cost * maintenance_ratio;
 
   for level in config.min_level..=config.max_level {
     stats.push(Stats {
       level,
-      wood: (cost * wood).ceil() as u32,
-      stone: (cost * stone).ceil() as u32,
-      iron: (cost * iron).ceil() as u32,
-      cost: cost.ceil() as u32,
-      workforce: workforce.ceil() as u32,
-      maintenance: maintenance.ceil() as u32,
-      production: production.ceil() as u32,
-      capacity: capacity.ceil() as u32,
-      custom: custom.ceil() as u32,
+      wood: (cost * wood_ratio).round() as u32,
+      stone: (cost * stone_ratio).round() as u32,
+      iron: (cost * iron_ratio).round() as u32,
+      cost: cost.round() as u32,
+      workforce: workforce.round() as u32,
+      maintenance: maintenance.round() as u32,
+      production: production.round() as u32,
+      capacity: capacity.round() as u32,
+      custom: custom.round() as u32,
     });
 
     cost += cost * cost_growth;
@@ -77,7 +79,7 @@ pub fn calc(config: &Config) -> Result<Vec<Stats>, JsError> {
     capacity += capacity * capacity_growth;
     custom += custom * custom_growth;
 
-    maintenance = cost * (config.maintenance.clamp(0.0, 1.0));
+    maintenance = cost * maintenance_ratio;
   }
 
   stats.sort_by_key(|it| it.level);
