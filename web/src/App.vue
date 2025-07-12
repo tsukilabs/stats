@@ -6,7 +6,7 @@ import { calc, Stats, Config as WasmConfig } from 'core';
 import { ref, shallowRef, useTemplateRef, watchEffect } from 'vue';
 import { Table, TableCell, TableHead, TableRow } from '@tb-dev/vue-components';
 
-const mainEl = useTemplateRef('mainEl');
+const mainEl = useTemplateRef('main');
 const mainHeight = useHeight(mainEl);
 
 const wasmConfig = new WasmConfig();
@@ -62,7 +62,7 @@ useColorMode({
       <div class="text-lg font-semibold">Calculadora de Stats</div>
       <Sheet v-model="config" />
     </header>
-    <main ref="mainEl" class="h-[calc(100vh-48px)] w-full">
+    <main ref="main" class="h-[calc(100vh-48px)] w-full">
       <Table
         :height="mainHeight - 30"
         width="100vw"
