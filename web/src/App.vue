@@ -59,7 +59,7 @@ useColorMode({
 <template>
   <div class="fixed inset-0 overflow-hidden select-none">
     <header class="flex h-[48px] items-center justify-between px-4">
-      <div class="text-lg font-semibold">Calculadora de Stats</div>
+      <div class="text-lg font-semibold">Stats Calculator</div>
       <Sheet v-model="config" />
     </header>
     <main ref="main" class="h-[calc(100vh-48px)] w-full">
@@ -72,34 +72,34 @@ useColorMode({
         <template #header>
           <TableRow class="bg-background hover:bg-background">
             <TableHead v-if="config.maxLevel > 1" class="w-16">
-              <span>Nível</span>
+              <span>Level</span>
             </TableHead>
             <TableHead v-if="config.minCost && config.maxCost && config.wood">
-              <span>Madeira</span>
+              <span>Wood</span>
             </TableHead>
             <TableHead v-if="config.minCost && config.maxCost && config.stone">
-              <span>Pedra</span>
+              <span>Stone</span>
             </TableHead>
             <TableHead v-if="config.minCost && config.maxCost && config.iron">
-              <span>Ferro</span>
+              <span>Iron</span>
             </TableHead>
             <TableHead v-if="config.minCost && config.maxCost">
-              <span>Custo</span>
+              <span>Cost</span>
             </TableHead>
             <TableHead v-if="config.minCost && config.maxCost && config.maintenance">
-              <span>Manutenção</span>
+              <span>Maintenance</span>
             </TableHead>
             <TableHead v-if="config.minWorkforce && config.maxWorkforce">
-              <span>Força de trabalho</span>
+              <span>Workforce</span>
             </TableHead>
             <TableHead v-if="config.minProduction && config.maxProduction">
-              <span>Produção</span>
+              <span>Production</span>
             </TableHead>
             <TableHead v-if="config.minCapacity && config.maxCapacity">
-              <span>Capacidade</span>
+              <span>Capacity</span>
             </TableHead>
             <TableHead v-if="config.minCustom && config.maxCustom">
-              <span>Valor (personalizado)</span>
+              <span>Value (custom)</span>
             </TableHead>
           </TableRow>
         </template>

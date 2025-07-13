@@ -23,18 +23,18 @@ const contentHeight = useHeight(contentEl);
 <template>
   <Sheet>
     <SheetTrigger as-child>
-      <Button size="sm">Opções</Button>
+      <Button size="sm">Options</Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Opções</SheetTitle>
+        <SheetTitle>Options</SheetTitle>
       </SheetHeader>
 
       <div ref="contentEl" class="size-full p-4">
         <ScrollArea :style="{ height: toPixel(contentHeight - 80) }">
           <div class="flex flex-col items-start gap-3 pr-4 pb-4 pl-2">
             <Label>
-              <span>Nível mínimo</span>
+              <span>Min. Level</span>
               <InputNumber
                 v-model="config.minLevel"
                 :min="1"
@@ -43,7 +43,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Nível máximo</span>
+              <span>Max. Level</span>
               <InputNumber
                 v-model="config.maxLevel"
                 :min="config.minLevel + 1"
@@ -52,19 +52,19 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Madeira</span>
+              <span>Wood</span>
               <InputNumber v-model="config.wood" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Pedra</span>
+              <span>Stone</span>
               <InputNumber v-model="config.stone" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Ferro</span>
+              <span>Iron</span>
               <InputNumber v-model="config.iron" :min="0" :max="1" :step="0.05" />
             </Label>
             <Label>
-              <span>Custo mínimo</span>
+              <span>Min. Cost</span>
               <InputNumber
                 v-model="config.minCost"
                 :min="0"
@@ -73,7 +73,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Custo máximo</span>
+              <span>Max. Cost</span>
               <InputNumber
                 v-model="config.maxCost"
                 :min="config.minCost + 1"
@@ -82,11 +82,11 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Manutenção</span>
+              <span>Maintenance</span>
               <InputNumber v-model="config.maintenance" :min="0" :max="1" :step="0.001" />
             </Label>
             <Label>
-              <span>Força de trabalho mínima</span>
+              <span>Min. Workforce</span>
               <InputNumber
                 v-model="config.minWorkforce"
                 :min="0"
@@ -95,7 +95,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Força de trabalho máxima</span>
+              <span>Max. Workforce</span>
               <InputNumber
                 v-model="config.maxWorkforce"
                 :min="config.minWorkforce + 1"
@@ -104,7 +104,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Produção mínima</span>
+              <span>Min. Production</span>
               <InputNumber
                 v-model="config.minProduction"
                 :min="0"
@@ -113,7 +113,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Produção máxima</span>
+              <span>Max. Production</span>
               <InputNumber
                 v-model="config.maxProduction"
                 :min="config.minProduction + 1"
@@ -122,7 +122,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Capacidade mínima</span>
+              <span>Min. Capacity</span>
               <InputNumber
                 v-model="config.minCapacity"
                 :min="0"
@@ -131,7 +131,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Capacidade máxima</span>
+              <span>Max. Capacity</span>
               <InputNumber
                 v-model="config.maxCapacity"
                 :min="config.minCapacity + 1"
@@ -140,7 +140,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Valor mínimo</span>
+              <span>Min. Value</span>
               <InputNumber
                 v-model="config.minCustom"
                 :min="0"
@@ -149,7 +149,7 @@ const contentHeight = useHeight(contentEl);
               />
             </Label>
             <Label>
-              <span>Valor máximo</span>
+              <span>Max. Value</span>
               <InputNumber
                 v-model="config.maxCustom"
                 :min="config.minCustom + 1"
