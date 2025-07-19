@@ -4,7 +4,14 @@ import Sheet from '@/components/Sheet.vue';
 import { useColorMode } from '@vueuse/core';
 import { calc, Stats, Config as WasmConfig } from 'core';
 import { ref, shallowRef, useTemplateRef, watchEffect } from 'vue';
-import { Table, TableCell, TableHead, TableRow } from '@tb-dev/vue-components';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@tb-dev/vue-components';
 
 const mainEl = useTemplateRef('main');
 const mainHeight = useHeight(mainEl);
@@ -69,7 +76,7 @@ useColorMode({
         class="px-4 pb-4"
         header-class="sticky top-0 z-50"
       >
-        <template #header>
+        <TableHeader>
           <TableRow class="bg-background hover:bg-background">
             <TableHead v-if="config.maxLevel > 1" class="w-16">
               <span>Level</span>
@@ -102,40 +109,42 @@ useColorMode({
               <span>Value (custom)</span>
             </TableHead>
           </TableRow>
-        </template>
+        </TableHeader>
 
-        <TableRow v-for="result of stats" :key="result.level">
-          <TableCell v-if="config.maxLevel > 1">
-            {{ result.level }}
-          </TableCell>
-          <TableCell v-if="config.minCost && config.maxCost && config.wood">
-            {{ result.wood }}
-          </TableCell>
-          <TableCell v-if="config.minCost && config.maxCost && config.stone">
-            {{ result.stone }}
-          </TableCell>
-          <TableCell v-if="config.minCost && config.maxCost && config.iron">
-            {{ result.iron }}
-          </TableCell>
-          <TableCell v-if="config.minCost && config.maxCost">
-            {{ result.cost }}
-          </TableCell>
-          <TableCell v-if="config.minCost && config.maxCost && config.maintenance">
-            {{ result.maintenance }}
-          </TableCell>
-          <TableCell v-if="config.minWorkforce && config.maxWorkforce">
-            {{ result.workforce }}
-          </TableCell>
-          <TableCell v-if="config.minProduction && config.maxProduction">
-            {{ result.production }}
-          </TableCell>
-          <TableCell v-if="config.minCapacity && config.maxCapacity">
-            {{ result.capacity }}
-          </TableCell>
-          <TableCell v-if="config.minCustom && config.maxCustom">
-            {{ result.custom }}
-          </TableCell>
-        </TableRow>
+        <TableBody>
+          <TableRow v-for="result of stats" :key="result.level">
+            <TableCell v-if="config.maxLevel > 1">
+              {{ result.level }}
+            </TableCell>
+            <TableCell v-if="config.minCost && config.maxCost && config.wood">
+              {{ result.wood }}
+            </TableCell>
+            <TableCell v-if="config.minCost && config.maxCost && config.stone">
+              {{ result.stone }}
+            </TableCell>
+            <TableCell v-if="config.minCost && config.maxCost && config.iron">
+              {{ result.iron }}
+            </TableCell>
+            <TableCell v-if="config.minCost && config.maxCost">
+              {{ result.cost }}
+            </TableCell>
+            <TableCell v-if="config.minCost && config.maxCost && config.maintenance">
+              {{ result.maintenance }}
+            </TableCell>
+            <TableCell v-if="config.minWorkforce && config.maxWorkforce">
+              {{ result.workforce }}
+            </TableCell>
+            <TableCell v-if="config.minProduction && config.maxProduction">
+              {{ result.production }}
+            </TableCell>
+            <TableCell v-if="config.minCapacity && config.maxCapacity">
+              {{ result.capacity }}
+            </TableCell>
+            <TableCell v-if="config.minCustom && config.maxCustom">
+              {{ result.custom }}
+            </TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
     </main>
   </div>
