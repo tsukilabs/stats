@@ -39,13 +39,7 @@ const contentHeight = useHeight(contentEl);
           <div class="flex flex-col items-start gap-3 pr-4 pb-4 pl-2">
             <Label>
               <span>Min. Level</span>
-              <NumberField
-                v-model="config.minLevel"
-                :min="1"
-                :max="config.maxLevel - 1"
-                :step="10"
-                class="w-full"
-              >
+              <NumberField v-model="config.minLevel" :min="0" :max="100" :step="10" class="w-full">
                 <NumberFieldContent>
                   <NumberFieldDecrement />
                   <NumberFieldInput class="dark:bg-input/40" />
@@ -56,13 +50,7 @@ const contentHeight = useHeight(contentEl);
 
             <Label>
               <span>Max. Level</span>
-              <NumberField
-                v-model="config.maxLevel"
-                :min="config.minLevel + 1"
-                :max="30"
-                :step="1"
-                class="w-full"
-              >
+              <NumberField v-model="config.maxLevel" :min="0" :max="100" :step="1" class="w-full">
                 <NumberFieldContent>
                   <NumberFieldDecrement />
                   <NumberFieldInput class="dark:bg-input/40" />
@@ -109,7 +97,7 @@ const contentHeight = useHeight(contentEl);
               <NumberField
                 v-model="config.minCost"
                 :min="0"
-                :max="config.maxCost - 1"
+                :max="1_000_000_000"
                 :step="1_000"
                 class="w-full"
               >
@@ -125,7 +113,7 @@ const contentHeight = useHeight(contentEl);
               <span>Max. Cost</span>
               <NumberField
                 v-model="config.maxCost"
-                :min="config.minCost + 1"
+                :min="0"
                 :max="1_000_000_000"
                 :step="1_000"
                 class="w-full"
@@ -160,7 +148,7 @@ const contentHeight = useHeight(contentEl);
               <NumberField
                 v-model="config.minWorkforce"
                 :min="0"
-                :max="config.maxWorkforce - 1"
+                :max="10_000"
                 :step="10"
                 class="w-full"
               >
@@ -176,7 +164,7 @@ const contentHeight = useHeight(contentEl);
               <span>Max. Workforce</span>
               <NumberField
                 v-model="config.maxWorkforce"
-                :min="config.minWorkforce + 1"
+                :min="0"
                 :max="10_000"
                 :step="10"
                 class="w-full"
@@ -194,7 +182,7 @@ const contentHeight = useHeight(contentEl);
               <NumberField
                 v-model="config.minProduction"
                 :min="0"
-                :max="config.maxProduction - 1"
+                :max="100_000"
                 :step="100"
                 class="w-full"
               >
@@ -210,7 +198,7 @@ const contentHeight = useHeight(contentEl);
               <span>Max. Production</span>
               <NumberField
                 v-model="config.maxProduction"
-                :min="config.minProduction + 1"
+                :min="0"
                 :max="100_000"
                 :step="100"
                 class="w-full"
@@ -228,7 +216,7 @@ const contentHeight = useHeight(contentEl);
               <NumberField
                 v-model="config.minCapacity"
                 :min="0"
-                :max="config.maxCapacity - 1"
+                :max="100_000_000"
                 :step="10_000"
                 class="w-full"
               >
@@ -244,7 +232,7 @@ const contentHeight = useHeight(contentEl);
               <span>Max. Capacity</span>
               <NumberField
                 v-model="config.maxCapacity"
-                :min="config.minCapacity + 1"
+                :min="0"
                 :max="100_000_000"
                 :step="10_000"
                 class="w-full"
